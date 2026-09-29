@@ -3,7 +3,7 @@
 Full-featured web to-do app — Flask backend + vanilla JS frontend.
 Built entirely with an AI coding agent (Claude Code) for HNG Internship Stage 1.
 
-**Live app:** _coming soon_
+**Live app:** https://digital-todo-list.vercel.app
 
 ## Features
 - Add / edit / complete / delete tasks
