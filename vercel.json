@@ -1,0 +1,6 @@
+{
+  "framework": null,
+  "installCommand": "",
+  "buildCommand": "sh build.sh",
+  "outputDirectory": "dist"
+}

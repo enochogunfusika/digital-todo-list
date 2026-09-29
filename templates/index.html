@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Digital To Do List</title>
+<link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+<div class="container">
+  <header class="header">
+    <div>
+      <h1>✅ Digital To Do List</h1>
+      <p class="subtitle">Stay organized — priorities, categories, due dates & drag-drop</p>
+    </div>
+    <button id="themeToggle" class="btn icon-btn" title="Toggle dark mode">🌙</button>
+  </header>
+
+  <section class="stats" id="stats">
+    <div class="stat-card"><span class="stat-num" id="statTotal">0</span><span class="stat-label">Total</span></div>
+    <div class="stat-card"><span class="stat-num" id="statActive">0</span><span class="stat-label">Active</span></div>
+    <div class="stat-card"><span class="stat-num" id="statCompleted">0</span><span class="stat-label">Done</span></div>
+    <div class="stat-card warn"><span class="stat-num" id="statOverdue">0</span><span class="stat-label">Overdue</span></div>
+    <div class="progress-wrap">
+      <div class="progress-bar"><div id="progressFill"></div></div>
+      <span id="progressText">0% complete</span>
+    </div>
+  </section>
+
+  <section class="card add-card">
+    <h2>Add a task</h2>
+    <form id="addForm">
+      <input id="titleInput" type="text" placeholder="What needs doing? *" maxlength="200" required />
+      <input id="descInput" type="text" placeholder="Notes (optional)" maxlength="500" />
+      <div class="form-row">
+        <select id="categoryInput" title="Category">
+          <option value="General">General</option>
+          <option value="Work">Work</option>
+          <option value="Personal">Personal</option>
+          <option value="Shopping">Shopping</option>
+          <option value="Study">Study</option>
+        </select>
+        <select id="priorityInput" title="Priority">
+          <option value="low">🟢 Low</option>
+          <option value="medium" selected>🟡 Medium</option>
+          <option value="high">🔴 High</option>
+        </select>
+        <input id="dueInput" type="date" title="Due date" />
+        <button type="submit" class="btn primary">+ Add</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="card toolbar">
+    <input id="searchInput" type="search" placeholder="🔍 Search tasks..." />
+    <div class="toolbar-row">
+      <div class="segmented" id="statusFilter">
+        <button data-status="all" class="active">All</button>
+        <button data-status="active">Active</button>
+        <button data-status="completed">Done</button>
+      </div>
+      <select id="filterCategory"><option value="all">All categories</option></select>
+      <select id="filterPriority">
+        <option value="all">All priorities</option>
+        <option value="high">High</option>
+        <option value="medium">Medium</option>
+        <option value="low">Low</option>
+      </select>
+      <select id="sortSelect" title="Sort">
+        <option value="order">↕ Manual</option>
+        <option value="due">📅 Due date</option>
+        <option value="priority">⚡ Priority</option>
+        <option value="created">🕐 Newest</option>
+      </select>
+      <button id="clearDone" class="btn danger-ghost" title="Delete all completed">Clear done</button>
+    </div>
+  </section>
+
+  <section>
+    <ul id="todoList" class="todo-list"></ul>
+    <p id="emptyState" class="empty hidden">Nothing here yet — add your first task above 🎉</p>
+  </section>
+
+  <footer class="footer"><small>Drag tasks to reorder · <span id="storageNote">Loading…</span></small></footer>
+</div>
+
+<!-- Edit modal -->
+<div id="editModal" class="modal hidden">
+  <div class="modal-box">
+    <h3>Edit task</h3>
+    <input id="editTitle" type="text" maxlength="200" />
+    <input id="editDesc" type="text" maxlength="500" placeholder="Notes" />
+    <div class="form-row">
+      <input id="editCategory" type="text" list="catList" placeholder="Category" />
+      <datalist id="catList"></datalist>
+      <select id="editPriority">
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
+      <input id="editDue" type="date" />
+    </div>
+    <div class="modal-actions">
+      <button id="editCancel" class="btn">Cancel</button>
+      <button id="editSave" class="btn primary">Save</button>
+    </div>
+  </div>
+</div>
+
+<script src="/static/local-api.js"></script>
+<script src="/static/app.js"></script>
+</body>
+</html>
